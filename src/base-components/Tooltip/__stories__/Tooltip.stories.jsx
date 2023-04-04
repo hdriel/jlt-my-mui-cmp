@@ -1,20 +1,32 @@
-import React from 'react';
-import Tooltip from '../Tooltip';
-import Button from '../../Button/Button';
+import React from "react";
+import Tooltip from "../Tooltip";
+import Button from "../../ButtonIcon/ButtonIcon";
 
 export default {
-    title: 'base-components/Tooltip',
-    component: Tooltip
-}
+  title: "base-components/Tooltip",
+  component: Tooltip,
+};
 
 export const Default = () => {
-    return <Tooltip ><Button/></Tooltip>
-}
+  return (
+    <Tooltip>
+      <Button />
+    </Tooltip>
+  );
+};
 
 export const Click = () => {
-    return <Tooltip ><Button/></Tooltip>
-}
+  return (
+    <Tooltip>
+      <Button />
+    </Tooltip>
+  );
+};
 
 export const Hover = () => {
-    return <Tooltip ><Button/></Tooltip>
-}
+  return (
+    <Tooltip>
+      <Button />
+    </Tooltip>
+  );
+};
