@@ -2,7 +2,7 @@ import React from "react";
 import RatingDialog from "../RatingDialog";
 
 export default {
-  title: "base-components/RatingDialog",
+  title: "components/RatingDialog",
   component: RatingDialog,
 };
 
