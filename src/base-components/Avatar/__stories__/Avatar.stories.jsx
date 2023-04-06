@@ -29,6 +29,16 @@ export const LongName = () => {
   return <Avatar {...actions} username="Hadriel Benjo And Afek " />;
 };
 
+export const NameWithoutTooltip = () => {
+  return <Avatar {...actions} username="Hadriel  Benjo" showTooltip={false} />;
+};
+
+export const Tooltip = () => {
+  return (
+    <Avatar {...actions} username="Hadriel  Benjo" tooltipPlacement="right" />
+  );
+};
+
 export const Image = () => {
   return <Avatar {...actions} image="/1.jpg" />;
 };

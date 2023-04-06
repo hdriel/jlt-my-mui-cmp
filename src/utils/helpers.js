@@ -3,7 +3,7 @@ export function getCapitalLetters(str) {
     str
       ?.split(" ")
       .filter((v) => !!v)
-      .map((word) => word[0]) ?? undefined;
+      .map((word) => word[0].toUpperCase()) ?? undefined;
 
   return chars && [chars[0], chars.slice(-1)];
 }

@@ -1,8 +1,50 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
+import React, { isValidElement, useEffect } from "react";
+import PropTypes from "prop-types";
+import { isForwardRef } from "react-is";
+import { Tooltip as MuiTooltip, Zoom } from "@mui/material";
+import { CustomChildTooltipWrapper } from "./Tooltip.helper";
+import { TOOLTIP_PLACEMENTS } from "./Tooltip.consts";
 
-export default function Tooltip() {
-    return (
-        <h1>Hello Tooltip</h1>
-    );
+export default function Tooltip({
+  title,
+  placement,
+  children,
+  open,
+  handleClose,
+  handleOpen,
+  ...props
+}) {
+  const isValidTooltipProps = title && isValidElement(children);
+
+  useEffect(() => {
+    if (!isValidTooltipProps) console.warn("Invalid Tooltip children or title");
+  }, [isValidTooltipProps]);
+
+  return isValidTooltipProps ? (
+    <MuiTooltip
+      TransitionComponent={Zoom}
+      title={title}
+      arrow
+      placement={placement}
+      {...props}
+    >
+      {isForwardRef(children) ? (
+        children
+      ) : (
+        <CustomChildTooltipWrapper>{children}</CustomChildTooltipWrapper>
+      )}
+    </MuiTooltip>
+  ) : (
+    children
+  );
 }
+
+Tooltip.propTypes = {
+  title: PropTypes.string,
+  placement: PropTypes.oneOf(TOOLTIP_PLACEMENTS),
+};
+
+Tooltip.defaultProps = {
+  title: undefined,
+  placement: "bottom",
+};
