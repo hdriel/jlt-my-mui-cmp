@@ -26,6 +26,7 @@ const Transition = forwardRef(function Transition({ children, ...props }, ref) {
 function PaperComponent({ titleId, ...props }) {
   return (
     <Draggable
+      bounds="body"
       handle={`#${titleId}`}
       cancel={'[class*="MuiDialogContent-root"]'}
     >

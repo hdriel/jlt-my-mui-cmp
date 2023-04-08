@@ -25,6 +25,13 @@ import Dialog, { DialogContentText } from "../Dialog";
 export default {
   title: "base-components/Dialog",
   component: Dialog,
+  decorators: [
+    (Story) => (
+      <div style={{ width: "100%", height: "100vh" }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export const Default = () => {
@@ -60,7 +67,7 @@ export const Dividers = () => {
   const handleClose = () => setOpen(false);
 
   return (
-    <div>
+    <>
       <Button variant="outlined" onClick={handleClickOpen}>
         Open dialog
       </Button>
@@ -75,7 +82,7 @@ export const Dividers = () => {
           See, there are dividers between title, content and actions
         </DialogContentText>
       </Dialog>
-    </div>
+    </>
   );
 };
 
