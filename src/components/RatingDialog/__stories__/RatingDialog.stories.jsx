@@ -1,19 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import RatingDialog from "../RatingDialog";
+import { Button, Tooltip } from "../../../base-components";
 
 export default {
   title: "components/RatingDialog",
   component: RatingDialog,
+  decorators: [
+    (Story) => (
+      <div style={{ width: "100%", height: "100vh" }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export const Default = () => {
-  return <RatingDialog />;
-};
+  const [open, setOpen] = useState(false);
+  const onCloseHandler = ({ rating, reason }) => {
+    console.log("rating", rating);
+    console.log("reason", reason);
+    setOpen(false);
+  };
 
-export const Click = () => {
-  return <RatingDialog />;
-};
-
-export const Hover = () => {
-  return <RatingDialog />;
+  return (
+    <>
+      <Tooltip title="Given a feedback dialog">
+        <Button onClick={() => setOpen(!open)}>Feedback</Button>
+      </Tooltip>
+      <RatingDialog open={open} onClose={onCloseHandler} />
+    </>
+  );
 };
