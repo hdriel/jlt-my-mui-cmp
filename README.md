@@ -3,7 +3,7 @@ Just-Like-That project that show how to customize out our components to handle m
 
 #### live demo: [storybook](https://hdriel.github.io/jlt-my-mui-cmp/)  
 
-After Mui Components APIs review Afek choosed 6 components to re-build and we develop these components into stories, 
+After Mui Components APIs review [Afek Sakaju](https://github.com/afekTheMiniLearner) choosed 6 components to re-build and we develop these components into stories, 
 
 the components are:
 
