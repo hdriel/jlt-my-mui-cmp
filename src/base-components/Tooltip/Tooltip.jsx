@@ -5,20 +5,12 @@ import { Tooltip as MuiTooltip, Zoom } from "@mui/material";
 import { CustomChildTooltipWrapper } from "./Tooltip.helper";
 import { TOOLTIP_PLACEMENTS } from "./Tooltip.consts";
 
-export default function Tooltip({
-  title,
-  placement,
-  children,
-  open,
-  handleClose,
-  handleOpen,
-  ...props
-}) {
+export default function Tooltip({ title, placement, children, ...props }) {
   const isValidTooltipProps = title && isValidElement(children);
 
-  useEffect(() => {
-    if (!isValidTooltipProps) console.warn("Invalid Tooltip children or title");
-  }, [isValidTooltipProps]);
+  // useEffect(() => {
+  //   if (!isValidTooltipProps) console.warn("Invalid Tooltip children or title");
+  // }, [isValidTooltipProps]);
 
   return isValidTooltipProps ? (
     <MuiTooltip

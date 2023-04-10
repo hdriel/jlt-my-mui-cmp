@@ -49,3 +49,24 @@ export const Placement = () => {
     </Tooltip>
   );
 };
+
+export const ByClick = () => {
+  const [open, setOpen] = React.useState(false);
+  const handleTooltipClose = () => setOpen(false);
+  const handleTooltipOpen = () => setOpen((v) => !v);
+
+  return (
+    <Tooltip
+      onClose={handleTooltipClose}
+      open={open}
+      disableFocusListener
+      disableHoverListener
+      disableTouchListener
+      PopperProps={{ disablePortal: true }}
+      title="placement tooltip"
+      placement="right"
+    >
+      <MuiButton onClick={handleTooltipOpen}>Mui Button</MuiButton>
+    </Tooltip>
+  );
+};
