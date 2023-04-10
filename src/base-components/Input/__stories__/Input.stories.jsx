@@ -136,7 +136,7 @@ export const Focused = () => {
       fullWidth={false}
       label="auto focused input"
       variant="outlined"
-      focused
+      autoFocus
     />
   );
 };
