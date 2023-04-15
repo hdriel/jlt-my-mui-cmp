@@ -17,8 +17,7 @@ export default {
 export const Default = () => {
   const [open, setOpen] = useState(false);
   const onCloseHandler = ({ rating, reason }) => {
-    console.log("rating", rating);
-    console.log("reason", reason);
+    console.table({ rating, reason });
     setOpen(false);
   };
 

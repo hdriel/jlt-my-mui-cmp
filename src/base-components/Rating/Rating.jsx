@@ -1,7 +1,38 @@
 import React, { useState } from "react";
 import { Box as MuiBox, Rating as MuiRating } from "@mui/material";
-import { Star as StarIcon } from "@mui/icons-material";
+import {
+  Star as StarIcon,
+  StarHalf as StarHalfIcon,
+  StarBorder as StarBorderIcon,
+} from "@mui/icons-material";
 import PropTypes from "prop-types";
+import { useTheme, styled } from "@mui/material/styles";
+import ReactStars from "react-rating-stars-component";
+
+// RTL - not working well with mui
+// const MyRating = styled(MuiRating)`
+//   &.MuiRating-root {
+//     /* @noflip */
+//     direction: ltr;
+//     /* @noflip */
+//     flex-direction: row;
+//   }
+//
+//   /* @noflip */
+//   text-align: left;
+//
+//   & .MuiRating-iconActive {
+//     /* @noflip */
+//     direction: ltr;
+//     /* @noflip */
+//     text-align: left;
+//   }
+//
+//   &:hover {
+//     /* @noflip */
+//     direction: ltr;
+//   }
+// `;
 
 const LABELS = {
   0.5: "Useless",
@@ -16,33 +47,35 @@ const LABELS = {
   5: "Excellent+",
 };
 
-function getLabelText(value) {
-  return `${value} Star${value !== 1 ? "s" : ""}, ${LABELS[value]}`;
-}
-
-export default function Rating({ value, onChange, disabled, showLabel }) {
-  const [hover, setHover] = useState(-1);
+export default function Rating({ value, onChange, disabled, showLabel, size }) {
+  const theme = useTheme();
 
   return (
     <MuiBox
       sx={{
-        width: 200,
         display: "flex",
         alignItems: "center",
+        padding: theme.spacing(2, 4),
+        direction: "ltr /* @noflip */",
+        width: "max-content",
       }}
     >
-      <MuiRating
-        name="hover-feedback"
+      <ReactStars
+        count={5}
+        size={size}
         value={value}
-        disabled={disabled}
-        precision={0.5}
-        getLabelText={getLabelText}
-        onChange={(event, newValue) => onChange?.(newValue)}
-        onChangeActive={(event, newHover) => setHover(newHover)}
-        emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+        edit={!disabled && !!onChange}
+        onChange={(value) => onChange?.(value)}
+        isHalf={true}
+        emptyIcon={
+          <StarBorderIcon style={{ opacity: 0.55 }} fontSize="inherit" />
+        }
+        halfIcon={<StarHalfIcon style={{ opacity: 1 }} fontSize="inherit" />}
+        fullIcon={<StarIcon style={{ opacity: 1 }} fontSize="inherit" />}
+        activeColor="#ffd700"
       />
       {showLabel && value !== null && (
-        <MuiBox sx={{ ml: 2 }}>{LABELS[hover !== -1 ? hover : value]}</MuiBox>
+        <MuiBox sx={{ ml: "16px /* @noflip */" }}>{LABELS[value]}</MuiBox>
       )}
     </MuiBox>
   );
@@ -53,6 +86,7 @@ Rating.propTypes = {
   onChange: PropTypes.func,
   disabled: PropTypes.bool,
   showLabel: PropTypes.bool,
+  size: PropTypes.number,
 };
 
 Rating.defaultProps = {
@@ -60,4 +94,5 @@ Rating.defaultProps = {
   onChange: undefined,
   disabled: false,
   showLabel: true,
+  size: 30,
 };

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Grid } from "@mui/material";
 import { Rating, Dialog, Input, Avatar } from "../../base-components";
 
 const MIN_POSITIVE_RATING = 3;
@@ -23,32 +24,38 @@ export default function RatingDialog({ open, onClose }) {
         </div>
       }
       open={open}
-      onClose={onCloseHandler}
+      // onClose={onCloseHandler}
       draggable={false} // NOTICE: using draggable mode will lose focus and reset position on each setState changed, dont use it in these case
       actions={[
         {
           label: "cancel",
+          color: "secondary",
           onClick: () => onClose({ rating: undefined, reason: undefined }),
         },
         {
           label: "submit",
+          color: "primary",
           onClick: onCloseHandler,
         },
       ]}
     >
-      <div style={{ display: "flex", flexDirection: "column", gap: "1em" }}>
-        <Rating value={rating} onChange={setRating} showLabel />
-        {rating <= MIN_POSITIVE_RATING && (
-          <Input
-            label="Reason"
-            required
-            multiline
-            rows={3}
-            value={reason}
-            onChange={(e) => setReason(e.target.value)}
-          />
-        )}
-      </div>
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={6}>
+          <Rating value={rating} onChange={setRating} showLabel />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          {rating <= MIN_POSITIVE_RATING && (
+            <Input
+              label="Reason"
+              required
+              multiline
+              rows={3}
+              value={reason}
+              onChange={(e) => setReason(e.target.value)}
+            />
+          )}
+        </Grid>
+      </Grid>
     </Dialog>
   );
 }

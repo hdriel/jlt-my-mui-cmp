@@ -5,3 +5,4 @@ export { default as Input } from "./Input/Input";
 export { default as PasswordInput } from "./PasswordInput/PasswordInput";
 export { default as Avatar } from "./Avatar/Avatar";
 export { default as Dialog } from "./Dialog/Dialog";
+export { default as AppBar } from "./AppBar/AppBar";

@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from "react";
+import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 import {
   Dialog as MuiDialog,
@@ -61,6 +61,7 @@ function Dialog({
 
   return (
     <MuiDialog
+      sx={{ backgroundColor: "background.dialog" }}
       onClose={handleClose}
       open={open}
       TransitionComponent={Transition}
